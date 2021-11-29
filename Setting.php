@@ -15,6 +15,7 @@ class Setting {
 	private $sections;
 
 	/**
+     * @param string $menu_slug The menu slug of the menu or sub menu page
 	 * @since 1.0.0
 	 */
 	public function __construct( $menu_slug ) {
@@ -116,6 +117,7 @@ class Setting {
 	}
 
 	/**
+     * @param array $data Contains parameters of the field
 	 * @since 1.0.0
 	 */
 	public function add_field( $data ) {

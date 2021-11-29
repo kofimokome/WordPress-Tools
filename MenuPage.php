@@ -4,7 +4,7 @@
  * User: kofi
  * Date: 6/5/19
  * Time: 11:59 AM
- * @version 1.0.0
+ * @version 1.0.1
  * @author kofi mokome
  */
 
@@ -20,31 +20,28 @@ class MenuPage {
 	private $sub_menu_pages;
 
 	/**
-	 * @param string $page_title The text to be displayed in the title tags of the page when the menu is selected.
-	 * @param string $menu_title The text to be used for the menu.
-	 * @param string $capability The capability required for this menu to be displayed to the user.
-	 * @param string $menu_slug The slug name to refer to this menu by. Should be unique for this menu page and only
-	 *                             include lowercase alphanumeric, dashes, and underscores characters to be compatible
-	 *                             with sanitize_key().
-	 * @param callable $function The function to be called to output the content for this page.
-	 * @param string $icon_url The URL to the icon to be used for this menu.
-	 *                             * Pass a base64-encoded SVG using a data URI, which will be colored to match
-	 *                               the color scheme. This should begin with 'data:image/svg+xml;base64,'.
-	 *                             * Pass the name of a Dashicons helper class to use a font icon,
-	 *                               e.g. 'dashicons-chart-pie'.
-	 *                             * Pass 'none' to leave div.wp-menu-image empty so an icon can be added via CSS.
-	 * @param int $position The position in the menu order this item should appear.
+	 * @param array $data
 	 *
 	 * @since 1.0.0
 	 */
-	public function __construct( $page_title, $menu_title, $capability, $menu_slug, $icon_url = '', $position = null, $function = '' ) {
-		$this->page_title = $page_title;
-		$this->menu_title = $menu_title;
-		$this->capability = $capability;
-		$this->menu_slug  = $menu_slug;
-		$this->icon_url   = $icon_url;
-		$this->position   = $position;
-		$this->function   = $function == '' ? array( $this, 'default_function' ) : $function;
+	public function __construct( $data ) {
+		$default_data     = array(
+			'page_title' => '',
+			'menu_title' => '',
+			'capability' => '',
+			'menu_slug'  => '',
+			'icon_url'   => '',
+			'position'   => null,
+			'function'   => ''
+		);
+		$data             = array_merge( $default_data, $data );
+		$this->page_title = $data['page_title'];
+		$this->menu_title = $data['menu_title'];
+		$this->capability = $data['capability'];
+		$this->menu_slug  = $data['menu_slug'];
+		$this->icon_url   = $data['icon_url'];
+		$this->position   = $data['position'];
+		$this->function   = $data['function'] == '' ? array( $this, 'default_function' ) : $data['function'];
 
 		$this->sub_menu_pages = array();
 	}
@@ -92,6 +89,7 @@ class MenuPage {
 
 	/**
 	 * @param SubMenuPage $sub_menu_page
+	 *
 	 * @since 1.0.0
 	 */
 	public function add_sub_menu_page( $sub_menu_page ) {
@@ -99,3 +97,4 @@ class MenuPage {
 	}
 
 }
+

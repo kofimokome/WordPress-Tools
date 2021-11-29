@@ -11,10 +11,19 @@ a. In a class
 ```php
 $menu_title = 'CF7 Form Filter';
 
-$menu_page     = new MenuPage( 'CF7 Form Filter', $menu_title, 'read', 'kmcf7-message-filter', 'dashicons-filter', null, array(
-$this,
-'dashboard_view'
-) );
+$menu_page = new MenuPage(
+			array(
+				'page_title' => 'CF7 Form Filter',
+				'menu_title' => $menu_title,
+				'capability' => 'read',
+				'menu_slug'  => 'kmcf7-message-filter',
+				'icon_url'   => 'dashicons-filter',
+				'position'   => null,
+				'function'   => array(
+					$this,
+					'dashboard_view'
+				)
+			) );
 
 $menu_page->run();
 ```
@@ -24,8 +33,16 @@ b. Not in a class
 ```php
 $menu_title = 'CF7 Form Filter';
 
-$menu_page     = new MenuPage( 'CF7 Form Filter', $menu_title, 'read', 'kmcf7-message-filter', 'dashicons-filter', null, 'dashboard_view' );
-
+$menu_page = new MenuPage(
+			array(
+				'page_title' => 'CF7 Form Filter',
+				'menu_title' => $menu_title,
+				'capability' => 'read',
+				'menu_slug'  => 'kmcf7-message-filter',
+				'icon_url'   => 'dashicons-filter',
+				'position'   => null,
+				'function'   => 'dashboard_view'
+			) );
 $menu_page->run();
 ```
 
@@ -34,15 +51,32 @@ $menu_page->run();
 ```php
 $menu_title = 'CF7 Form Filter';
 
-$menu_page     = new MenuPage( 'CF7 Form Filter', $menu_title, 'read', 'kmcf7-message-filter', 'dashicons-filter', null, array(
-$this,
-'dashboard_view'
-) );
+$menu_page = new MenuPage(
+			array(
+				'page_title' => 'CF7 Form Filter',
+				'menu_title' => $menu_title,
+				'capability' => 'read',
+				'menu_slug'  => 'kmcf7-message-filter',
+				'icon_url'   => 'dashicons-filter',
+				'position'   => null,
+				'function'   => array(
+					$this,
+					'dashboard_view'
+				)
+			) );
 
-$messages_page = new SubMenuPage( $menu_page->get_menu_slug(), 'Blocked Messages', 'Blocked Messages', 'manage_options', 'kmcf7-filtered-messages', array(
-			$this,
-			'messages_view'
-		) );
+$messages_page = new SubMenuPage(
+			array(
+				'parent_slug' => $menu_page->get_menu_slug(),
+				'page_title'  => 'Blocked Messages',
+				'menu_title'  => 'Blocked Messages',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'kmcf7-filtered-messages',
+				'function'    => array(
+					$this,
+					'messages_view'
+				)
+			) );
 $menu_page->add_sub_menu_page( $messages_page );
 $menu_page->run();
 ```
@@ -54,23 +88,32 @@ $menu_page->run();
 ### 3. Sub Menu page with tabs
 
 ```php
-	$settings_page = new SubMenuPage( $menu_page->get_menu_slug(), 'Settings', 'Settings', 'manage_options', 'kmcf7-message-filter-options', array(
-			$this,
-			'settings_view'
-		), true );
-		$settings_page->add_tab( 'basic', 'Basic Settings', array(
+	$settings_page = new SubMenuPage(
+			array(
+				'parent_slug' => $menu_page->get_menu_slug(),
+				'page_title'  => 'Settings',
+				'menu_title'  => 'Settings',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'kmcf7-message-filter-options',
+				'function'    => array(
+					$this,
+					'settings_view'
+				),
+				'use_tabs'    => true
+			) );
+	$settings_page->add_tab( 'basic', 'Basic Settings', array(
 			$this,
 			'status_tab_view'
 		), array( 'tab' => 'basic' ) );
-		$settings_page->add_tab( 'advanced', 'Advanced Settings', array(
+	$settings_page->add_tab( 'advanced', 'Advanced Settings', array(
 			$this,
 			'status_tab_view'
 		), array( 'tab' => 'advanced' ) );
-		$settings_page->add_tab( 'plugins', 'More Plugins', array(
+	$settings_page->add_tab( 'plugins', 'More Plugins', array(
 			$this,
 			'status_tab_view'
 		), array( 'tab' => 'plugins' ) );
-		$menu_page->add_sub_menu_page( $settings_page );
+	$menu_page->add_sub_menu_page( $settings_page );
 ```
 
 ```php
@@ -154,6 +197,25 @@ $settings->add_field(
 			)
 		);
 $settings->save();
+```
+
+### default data
+
+```php
+$default_data = array(
+			'type'           => '',
+			'id'             => '',
+			'label'          => '',
+			'tip'            => '',
+			'min'            => '',
+			'max'            => '',
+			'input_class'    => '', // class for input element
+			'class'          => '', // class for parent element
+			'options'        => array( 'Select a value' => '' ),
+			'default_option' => '',
+			'autocomplete'   => 'on',
+			'placeholder'    => ''
+		);
 ```
 
 You can display the form using

@@ -5,8 +5,9 @@
  * Date: 6/5/19
  * Time: 12:41 PM
  * @author kofi mokome
- * @version  1.0.0
+ * @version  1.0.1
  */
+
 
 class SubMenuPage {
 	private $page_title;
@@ -18,16 +19,29 @@ class SubMenuPage {
 	private $tabs;
 
 	/**
+	 * @param array $data
+	 *
 	 * @since 1.0.0
 	 */
-	public function __construct( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function = null, $use_tabs = false ) {
-		$this->page_title  = $page_title;
-		$this->menu_title  = $menu_title;
-		$this->capability  = $capability;
-		$this->menu_slug   = $menu_slug;
-		$this->parent_slug = $parent_slug;
-		$this->function    = $function;
-		if ( $use_tabs ) {
+	public function __construct( $data ) {
+		$default_data = array(
+			'parent_slug' => '',
+			'page_title'  => '',
+			'menu_title'  => '',
+			'capability'  => '',
+			'menu_slug'   => '',
+			'function'    => null,
+			'use_tabs'    => false
+		);
+		$data         = array_merge( $default_data, $data );
+
+		$this->page_title  = $data['page_title'];
+		$this->menu_title  = $data['menu_title'];
+		$this->capability  = $data['capability'];
+		$this->menu_slug   = $data['menu_slug'];
+		$this->parent_slug = $data['parent_slug'];
+		$this->function    = $data['function'];
+		if ( $data['use_tabs'] ) {
 			$this->function = array( &$this, 'show_tabs' );
 		}
 		$this->tabs = array();
@@ -104,6 +118,7 @@ class SubMenuPage {
 		);
 	}
 }
+
 
 
 
