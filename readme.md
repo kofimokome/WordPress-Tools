@@ -199,7 +199,7 @@ $settings->add_field(
 $settings->save();
 ```
 
-### default data
+### default field data
 
 ```php
 $default_data = array(
@@ -247,3 +247,13 @@ Alternatively, you don't want to use `show_form()`, you can display the form wit
 ### output
 
 ![Display options](images/img2.png)
+
+## Troubleshooting
+
+### 1. Setting fields not showing on WordPress Dashboard
+
+1. Do not create the setting in the callback function of a menu or submenu, this will not allow the helper to hook into
+   the `admin_init` action.
+
+   You can either call the `show_form()` method in the menu page callback function or write the code manually to display
+   the form (as shown above) in the callback function
