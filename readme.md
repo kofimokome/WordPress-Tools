@@ -11,7 +11,7 @@ a. In a class
 ```php
 $menu_title = 'CF7 Form Filter';
 
-$menu_page = new MenuPage(
+$menu_page = new KMMenuPage(
 			array(
 				'page_title' => 'CF7 Form Filter',
 				'menu_title' => $menu_title,
@@ -33,7 +33,7 @@ b. Not in a class
 ```php
 $menu_title = 'CF7 Form Filter';
 
-$menu_page = new MenuPage(
+$menu_page = new KMMenuPage(
 			array(
 				'page_title' => 'CF7 Form Filter',
 				'menu_title' => $menu_title,
@@ -51,7 +51,7 @@ $menu_page->run();
 ```php
 $menu_title = 'CF7 Form Filter';
 
-$menu_page = new MenuPage(
+$menu_page = new KMMenuPage(
 			array(
 				'page_title' => 'CF7 Form Filter',
 				'menu_title' => $menu_title,
@@ -65,7 +65,7 @@ $menu_page = new MenuPage(
 				)
 			) );
 
-$messages_page = new SubMenuPage(
+$messages_page = new KMSubMenuPage(
 			array(
 				'parent_slug' => $menu_page->get_menu_slug(),
 				'page_title'  => 'Blocked Messages',
@@ -89,7 +89,7 @@ $menu_page->run();
 ### 3. Sub Menu page with tabs
 
 ```php
-	$settings_page = new SubMenuPage(
+	$settings_page = new KMSubMenuPage(
 			array(
 				'parent_slug' => $menu_page->get_menu_slug(),
 				'page_title'  => 'Settings',
@@ -140,7 +140,7 @@ public function status_tab_view( $args ) {
 ### 4. Settings API
 
 ```php
-$settings = new Setting( 'kmcf7-message-filter-options&tab=advanced' );
+$settings = new KMSetting( 'kmcf7-message-filter-options&tab=advanced' );
 $settings->add_section( 'kmcfmf_message_filter_advanced' );
 $settings->add_field(
 			array(

@@ -8,7 +8,7 @@
  * @author kofi mokome
  */
 
-class Setting {
+class KMSetting {
 	private $menu_slug;
 	private $fields;
 	private $section_id;
