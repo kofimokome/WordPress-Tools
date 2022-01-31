@@ -72,6 +72,7 @@ $messages_page = new SubMenuPage(
 				'menu_title'  => 'Blocked Messages',
 				'capability'  => 'manage_options',
 				'menu_slug'   => 'kmcf7-filtered-messages',
+				'position'    => 1
 				'function'    => array(
 					$this,
 					'messages_view'

@@ -4,12 +4,11 @@
  * User: kofi
  * Date: 6/5/19
  * Time: 11:59 AM
- * @version 1.0.1
+ * @version 1.0.2
  * @author kofi mokome
  */
 
-
-class MenuPage {
+class KMMenuPage {
 	private $page_title;
 	private $menu_title;
 	private $capability;
@@ -88,11 +87,12 @@ class MenuPage {
 	}
 
 	/**
-	 * @param SubMenuPage $sub_menu_page
+	 * @param KMSubMenuPage $sub_menu_page
 	 *
 	 * @since 1.0.0
 	 */
 	public function add_sub_menu_page( $sub_menu_page ) {
+		$sub_menu_page->set_parent_slug( $this->menu_slug );
 		array_push( $this->sub_menu_pages, $sub_menu_page );
 	}
 
