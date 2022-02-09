@@ -258,3 +258,5 @@ Alternatively, you don't want to use `show_form()`, you can display the form wit
 
    You can either call the `show_form()` method in the menu page callback function or write the code manually to display
    the form (as shown above) in the callback function
+2. If you get `Options page  not found in the allowed options list.` error, set your munu slug as the section
+   id [More Info Here](https://wordpress.stackexchange.com/questions/139660/error-options-page-not-found-on-settings-page-submission-for-an-oop-plugin) 
